@@ -3,13 +3,13 @@ polopoly-dsl
 
 My XText-based project for a Eclipse plugin that defines a dsl with an editor for Polopoly content in the text format.
 
-_Prerequisites_
+### Prerequisites
 This project uses:
 * Eclipse
 * XText: http://www.eclipse.org/xtext/
 * Xtend: http://www.eclipse.org/xtend/
 
-_Overview_
+## Overview
 There are three projects:
 1. The core project: com.polopoly.ps.dsl.textcontent
 2. The tests: com.polopoly.ps.dsl.textcontent.tests
