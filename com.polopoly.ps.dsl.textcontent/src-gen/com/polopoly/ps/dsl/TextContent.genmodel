@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.polopoly.ps.dsl.textcontent/src-gen"
+    editDirectory="/com.polopoly.ps.dsl.textcontent.edit/src" editorDirectory="/com.polopoly.ps.dsl.textcontent.editor/src"
+    modelPluginID="com.polopoly.ps.dsl.textcontent" forceOverwrite="true" modelName="TextContent"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="com.polopoly.ps.dsl.textcontent.edit"
+    editorPluginID="com.polopoly.ps.dsl.textcontent.editor">
+  <genPackages prefix="TextContent" basePackage="com.polopoly.ps.dsl" disposableProviderFactory="true"
+      ecorePackage="TextContent.ecore#/">
+    <genClasses ecoreClass="TextContent.ecore#//TextContent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//TextContent/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//TextContent/inputtemplate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//TextContent/securityparent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//TextContent/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TextContent.ecore#//TextContent/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TextContent.ecore#//TextContent/references"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TextContent.ecore#//TextContent/listElements"/>
+    </genClasses>
+    <genClasses ecoreClass="TextContent.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Component/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Component/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Component/value"/>
+    </genClasses>
+    <genClasses ecoreClass="TextContent.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Reference/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Reference/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//Reference/referredId"/>
+    </genClasses>
+    <genClasses ecoreClass="TextContent.ecore#//ListElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//ListElement/referredId"/>
+    </genClasses>
+    <genClasses ecoreClass="TextContent.ecore#//DefaultListElement"/>
+    <genClasses ecoreClass="TextContent.ecore#//AbstractNamedListElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//AbstractNamedListElement/listName"/>
+    </genClasses>
+    <genClasses ecoreClass="TextContent.ecore#//NamedListElement"/>
+    <genClasses ecoreClass="TextContent.ecore#//NamedListElementWithRefMetadata">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TextContent.ecore#//NamedListElementWithRefMetadata/referenceMetadataId"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

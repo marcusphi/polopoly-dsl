@@ -1,0 +1,39 @@
+grammar com.polopoly.ps.dsl.TextContent with org.eclipse.xtext.common.Terminals
+
+generate textContent "http://www.polopoly.com/ps/dsl/TextContent"
+
+TextContent hidden(COMMENT, WS):
+	'id:' id=PP_ID
+	'inputtemplate:' inputtemplate=PP_ID
+	'securityparent:' securityparent=PP_ID
+	'name:' name=STRING
+	components+=Component*
+	references+=Reference*
+	listElements+=ListElement*
+;
+// TODO: Replace STRING in Component and name with a string without "
+
+Component:
+	'component:' group=PP_ID ':' name=PP_ID ':' value=STRING;
+
+Reference:
+	'ref:' group=PP_ID ':' name=PP_ID ':' referredId=PP_ID;
+	
+ListElement:
+	DefaultListElement | AbstractNamedListElement;
+
+DefaultListElement:
+	'list:' referredId=PP_ID;
+
+AbstractNamedListElement:	
+	NamedListElement | NamedListElementWithRefMetadata;
+
+NamedListElement:
+	'list:' listName=PP_ID ':' referredId=PP_ID;
+
+NamedListElementWithRefMetadata:
+	'list:' listName=PP_ID ':' referredId=PP_ID ':' referenceMetadataId=PP_ID;
+
+terminal PP_ID : ('a'..'z'|'A'..'Z'|'_'|'.'|'0'..'9')+;
+
+terminal COMMENT : '#' !('\n'|'\r')* ('\r'? '\n')?;

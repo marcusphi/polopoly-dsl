@@ -1,0 +1,148 @@
+# This example/tutorial to textcontent format is provided here in the xtext textcontent dsl project as a reference.
+
+id:.article
+inputtemplate:Example
+securityparent:p.SecurityRootDepartment
+name:Demo ExampleModule Article Name
+list:images:.image.1:.image.1.refmeta
+list:images:.image.2
+list:images:.image.3
+list:images:.image.4
+# publish:resources:GreenfieldTimes.d
+
+id:.image.1
+inputtemplate:example.Image
+securityparent:.article
+name:Demo ExampleModule Image 1 Name
+component:description:value:This is a demo image
+component:byline:value:Byline text
+component:categorization[department.categorydimension.tag.Tag]:text:Example Tag, Another Tag
+component:imageType:subField:image
+component:image:selected:image/atex.png
+file:image/atex.png:files/atex.png
+list:categorization[department.categorydimension.subject]:subject-05011
+
+id:.image.1.refmeta
+major:13
+inputtemplate:example.ImageRefMeta
+securityparent:.article
+component:imagetext:value:Image 1 Refmetadata Imagetext
+
+id:.image.2
+inputtemplate:example.Image
+securityparent:.article
+name:Demo ExampleModule Image 2 Name
+component:description:value:This is a demo http image
+component:imageType:subField:httpImage
+component:imageType/httpImage:imageUrl:http\://www.atex.com/image.png
+# NB Http images are not properly updated in GUI if you change URL and re-import
+
+id:.image.3
+template:.image.1
+name:Demo ExampleModule Image 3 Name
+
+id:.image.4
+template:.image.2
+name:Demo ExampleModule Image 4 Name
+component:imageType/httpImage:imageUrl:http\://www.google.com/intl/en_com/images/srpr/logo3w.png
+component:categorization[department.categorydimension.tag.Tag]:text:Example Tag
+list:categorization[department.categorydimension.subject]:subject-04018
+
+# --------------------------------------------------------------------------------
+# HINTS 
+# * Within the same .content file you can cross-refererence without problem (it's imported in one batch).
+# * Colon ":" can be escaped with \
+# * Use Properties file editor or similar in Eclipse to get some syntax coloring
+# * Note that the format used is (almost) identical to the output of pcmd inspect.
+
+# --------------------------------------------------------------------------------
+# WALK-THROUGH OF KEYS
+
+## ExternalId ##
+# Example: id:.article 
+# Syntax:  id: <external_id>
+# Must come first for each content!
+# If value starts with ".", the resulting ExternalId will be: <fileNameWithoutContentExtension> + <id>. 
+# This applies also to external id references (see example below)
+
+## Major ##
+# Example: major:13
+# Syntax:  major:<major_id|major_name>
+# Optional. If not given it's taken from input-template. If not there defaults to 1.  
+# Hint: Often the reference metadata lacks the <type> in the input-template definition.
+# Numeric ("7") or String ("layoutelement") representation.
+
+## Input-template ##
+# Example: inputtemplate:Example
+# Syntax:  inputtemplate:<input-template_name>
+
+## Security parent ##
+# Example: securityparent:GreenfieldTimes.d
+# Syntax:  securityparent:<external_id>
+
+## Components ##
+# Example: component:byline:value:Byline text
+# Syntax:  component:<group>:<name>:<value> 
+# For single value fields such as p.TextInput this is "component:<field_name>:value:<value>"
+
+## Name ##
+# Example: name:Demo ExampleModule Article Name
+# Syntax:  name:<Name string>
+# Shortcut for name component ("component:polopoly.Content:name")
+
+## Content references # 
+# Example: ref:pageLayout:selected:example.DefaultPageLayout
+# Syntax:  ref:<group>:<name>:<referred_external_id> 
+
+## Content Lists #
+# Add references to other content in content lists of this content
+# Syntax:
+#   list:<referred_external_id> 
+#	(Adds to default content list: group=polopoly.Department if Major=Department, polopoly.Toc if Major=Article or Layout Element)
+#   list:<list_name>:<referred_external_id>
+#   list:<list_name>:<referred_external_id>:<ref_metadata_external_id>
+# Example: 
+#   list:mySubPage
+#   list:images:.image.1:.image.1.refmeta
+# NB pcmd inspect currently prints ref and ref metadata in opposite order!
+# NB List is cleared before references are inserted
+
+## Publish #
+# To publish this content in a content list of another content. Parameters are similar to "list". 
+# Syntax:
+#   publish:<external_id_to_publish_in> (Publishes in default content list)
+#   publish:<list_name>:<external_id_to_publish_in>
+#   publish:<list_name>:<external_id_to_publish_in>:<ref_metadata_external_id>
+# Example:
+#   publish:GreenfieldTimes.d
+#   publish:resources:GreenfieldTimes.d
+# NB 1: List is NOT cleared before adding references.
+# NB 2: Publish is not inherited when using 'template (see below)'
+
+## Files #
+# To add a file to a content, e.g. an image file to an image template.
+# file:<filename>:<filepath>
+
+
+# Templating ---------------------------------------------------------------------
+# You can create content using another content as template.
+# Here is a second article where only name (and externalid of course) differs
+id:.article.templated
+template:.article
+name:Demo ExampleModule Templated Article Name
+# NB : 'publish' is not inherited when using 'template'.
+
+
+# --------------------------------------------------------------------------------
+# These are all the available keys. It can be used as a template for new content #
+#id:
+#major:
+#inputtemplate:
+#securityparent:
+#name:
+#component:
+#ref:
+#file:
+#list:
+#publish:
+# --------------------------------------------------------------------------------
